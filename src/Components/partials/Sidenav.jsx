@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Trending from "../Trending";
 
 function Sidenav() {
   return (
@@ -13,7 +14,7 @@ function Sidenav() {
           <h1 className="text-white font-semibold tex-xl mt-10 mb-5">
             New Feed
           </h1>
-          <Link className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-5">
+          <Link to="/trending" className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-5">
             <i className="mr-2 ri-fire-fill"></i>Trending
           </Link>
           <Link className="hover:bg-[#6556CD] hover:text-white duration-300 rounded-lg p-5">

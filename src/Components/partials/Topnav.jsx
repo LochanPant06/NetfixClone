@@ -1,29 +1,43 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "../../utils/axios";
+// import axios from "../../utils/axios";
+import instance from "../../utils/axios";
 import { useEffect } from "react";
 import noImage from "../../../public/noImage.jpg";
 
 function Topnav() {
+
+
+  
   const [query, setquery] = useState("");
   const [searchs, setsearchs] = useState([]);
 
+
+
+
   const GetSearch = async () => {
     try {
-      const { data } = await axios.get(`/search/multi?query=${query}`); // https://api.themoviedb.org/3/search/multi
-
-      console.log(data);
+      const { data } = await instance.get(`/search/multi?query=${query}`); // https://api.themoviedb.org/3/search/multi
+      // console.log(data);
       setsearchs(data.results);
     } catch (error) {
       console.log("Error:", error);
     }
   };
+
+
+
+
   useEffect(() => {
-    GetSearch();
+    GetSearch(); //queary mai chnge aayega to ye function chala do
   }, [query]);
 
+
+
+
+
   return (
-    <div className="w-full h-[10vh] relative justify-start items-center flex">
+    <div className="w-[80%] h-[10vh] relative flex mx-auto items-center">
       <i className=" text-zinc-400 text-3xl ri-search-2-line "></i>
       <input
         onChange={(e) => setquery(e.target.value)}
