@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 // import axios from "../../utils/axios";
 import instance from "../../utils/axios";
 import { useEffect } from "react";
 import noImage from "../../../public/noImage.jpg";
 
 function Topnav() {
-
-
-  
   const [query, setquery] = useState("");
   const [searchs, setsearchs] = useState([]);
-
-
-
 
   const GetSearch = async () => {
     try {
@@ -25,16 +19,9 @@ function Topnav() {
     }
   };
 
-
-
-
   useEffect(() => {
     GetSearch(); //queary mai chnge aayega to ye function chala do
   }, [query]);
-
-
-
-
 
   return (
     <div className="w-[80%] h-[10vh] relative flex mx-auto items-center">
@@ -53,9 +40,10 @@ function Topnav() {
         ></i>
       )}
 
-      <div className="absolute w-[50%] max-h-[50vh] bg-zinc-200 top-[100%] left-[5%] overflow-auto">
+      <div className="z-[100] absolute w-[50%] max-h-[50vh] bg-zinc-200 top-[100%] left-[5%] overflow-auto">
         {searchs.map((s, i) => (
           <Link
+            to={`/${s.media_type}/details/${s.id}`}
             key={i}
             className="hover:text-black hover:bg-zinc-300 duration-300 font-semibold text-zinc-600 w-[100%] p-10 flex justify-start items-center border-b-2 border-zinc-100"
           >

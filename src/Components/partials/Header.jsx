@@ -17,16 +17,16 @@ function Header({ data }) {
         {data.name || data.title || data.original_name || data.original_title}
       </h1>
       <p className="w-[70%] text-white mt-3 mb-3 ">
-        {data.overview.slice(0, 150)}...
-        <Link className="text-blue-400">more</Link>
+        {data.overview ? data.overview.slice(0, 150).concat("...") : "No description"}
+        <Link to={`/${data.media_type}/details/${data.id}`} className="text-blue-400">more</Link>
       </p>
       <p className="text-white">
         <i className="text-yellow-500 ri-megaphone-fill"></i>
         {data.release_date || "No Information"}
         <i className="text-yellow-500 ri-album-fill"></i>
-        {data.media_type.toUpperCase()}
+        {data.media_type ? data.media_type.toUpperCase() : ""}
       </p>
-      <Link className="bg-[#6556CD] p-4 rounded text-white mt-5">
+      <Link to={`/${data.media_type}/details/${data.id}/trailer`} className="bg-[#6556CD] p-4 rounded text-white mt-5">
         Watch Trailer
       </Link>
     </div>

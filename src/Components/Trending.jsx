@@ -8,12 +8,18 @@ import Loading from "../Components/Loading";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 function Trending() {
+  
+
   const navigate = useNavigate(); //peeche jane ke liye
   const [Category, setCategory] = useState("all");
   const [duration, setduration] = useState("day");
   const [trending, settrending] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+
+document.title = "SCSD | Trending ";  
+
+  //jab ye page open hoga to ye title set hoga
 
   // const GetTrending = async () => {
   //   try {
@@ -33,7 +39,7 @@ function Trending() {
       const { data } = await axios.get(
         `/trending/${Category}/${duration}?page=${page}`
       );
-
+2
       if (data.results.length > 0) {
         settrending((prev) => [...prev, ...data.results]);
         setPage((prev) => prev + 1);
@@ -52,8 +58,8 @@ function Trending() {
       GetTrending();
     } else {
       setPage(1);
-      settrending([]);
-      GetTrending();
+      settrending([]);// settrending ko khale kar diya hai 
+      GetTrending();//settrending ko khali karke getTrending ko call kar diya hai
     }
   };
 
@@ -65,7 +71,7 @@ function Trending() {
   }, [Category, duration]);
 
 
-  
+
   return trending.length > 0 ? (
     // overflow-hidden overflow-y-auto neeche wale mai use hua tha
     <div className=" w-screen h-screen ">
@@ -99,6 +105,7 @@ function Trending() {
       {/* ye saare syntex infinite scroll ke liye hai ye jo cheeze inside infinite scroll ke likhe hai wo likhenge tabhi work karega */}
       <InfiniteScroll
         loader={<h1>Loading...</h1>}
+        // loader={<Loading />}
         dataLength={trending.length}
         next={GetTrending}
         // hasMore={true}
